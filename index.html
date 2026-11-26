@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Bianca Oliveira — Desenvolvimento de Sistemas</title>
+    <meta
+      name="description"
+      content="Portfólio de Bianca Oliveira, estudante de Desenvolvimento de Sistemas no SENAI. Projetos em PHP, MySQL, JavaScript e Flutter, com destaque para o Ákron, sistema de monitoramento ambiental desenvolvido no TCC."
+    />
+    <meta name="author" content="Bianca Moreira de Oliveira" />
+    <meta name="theme-color" content="#080F24" />
+    <meta name="color-scheme" content="dark light" />
+    <script>
+      // Marca, antes da primeira pintura, se as animações de entrada vão rodar.
+      document.documentElement.classList.add(
+        matchMedia('(prefers-reduced-motion: reduce)').matches ? 'no-motion' : 'motion',
+      )
+    </script>
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <link rel="preload" href="/fonts/instrument-serif-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/instrument-serif-400-italic.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/manrope-variable.woff2" as="font" type="font/woff2" crossorigin />
+
+    <!-- Open Graph / pré-visualização em redes sociais -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="Bianca Oliveira" />
+    <meta property="og:title" content="Bianca Oliveira — Desenvolvimento de Sistemas" />
+    <meta
+      property="og:description"
+      content="Sistemas web e mobile, do banco de dados à interface. Conheça o Ákron, os projetos e os certificados de Bianca Oliveira."
+    />
+    <meta property="og:url" content="%VITE_SITE_URL%" />
+    <meta property="og:image" content="%VITE_SITE_URL%og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Bianca Oliveira — Desenvolvimento de Sistemas, com uma estrela de quatro pontas sobre um céu azul-escuro." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Bianca Oliveira — Desenvolvimento de Sistemas" />
+    <meta name="twitter:image" content="%VITE_SITE_URL%og-image.png" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Bianca Moreira de Oliveira",
+        "alternateName": "Bianca Oliveira",
+        "url": "%VITE_SITE_URL%",
+        "image": "%VITE_SITE_URL%og-image.png",
+        "jobTitle": "Estudante de Desenvolvimento de Sistemas",
+        "affiliation": { "@type": "EducationalOrganization", "name": "SENAI" },
+        "address": { "@type": "PostalAddress", "addressLocality": "Mococa", "addressRegion": "SP", "addressCountry": "BR" },
+        "sameAs": [
+          "https://github.com/bywoliveira",
+          "https://www.linkedin.com/in/bianca-moreira-de-oliveira-013059390"
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

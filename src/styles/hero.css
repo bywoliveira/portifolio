@@ -1,0 +1,294 @@
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  background: var(--night);
+  color: var(--mist);
+  overflow: hidden;
+  isolation: isolate;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--grain);
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+/* Antes do JavaScript assumir a animação de entrada, o nome e a carta celeste ficam ocultos
+   (só quando há movimento). Se o script atrasar — rede lenta — ou falhar, eles aparecem sozinhos
+   em 1,2 s e a animação de entrada é pulada (ver Hero.tsx). */
+.motion:not(.hero-ready) .hero__name,
+.motion:not(.hero-ready) .hero__chart {
+  visibility: hidden;
+  animation: hero-failsafe 0s linear 1.2s forwards;
+}
+@keyframes hero-failsafe {
+  to {
+    visibility: visible;
+  }
+}
+
+/* Céu (campo de estrelas) */
+.hero__sky {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Carta celeste */
+.hero__chart {
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  right: -9vw;
+  width: min(66vw, 1040px);
+  aspect-ratio: 1;
+  translate: 0 -50%;
+  pointer-events: none;
+}
+.hero__chart-inner {
+  width: 100%;
+  height: 100%;
+}
+.celestial-chart {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.chart-line {
+  fill: none;
+  stroke: var(--sky);
+  stroke-opacity: 0.3;
+  stroke-width: 1.1;
+}
+.chart-line--dashed {
+  stroke-dasharray: 2 8;
+  stroke-opacity: 0.24;
+}
+.chart-line--faint {
+  stroke-opacity: 0.08;
+}
+.chart-ticks {
+  stroke: var(--sky);
+  stroke-opacity: 0.34;
+  stroke-width: 1;
+}
+.chart-label {
+  fill: var(--slate);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 17px;
+  text-anchor: middle;
+}
+.chart-orbit {
+  fill: none;
+  stroke: var(--sky);
+  stroke-opacity: 0.45;
+  stroke-width: 1.1;
+}
+.chart-orbit--soft {
+  stroke-opacity: 0.2;
+}
+.chart-planet {
+  fill: var(--royal);
+  stroke: var(--sky);
+  stroke-width: 1.5;
+}
+.chart-link {
+  stroke: var(--mist);
+  stroke-opacity: 0.5;
+  stroke-width: 1.1;
+}
+.chart-dot {
+  fill: var(--mist);
+}
+.chart-star {
+  fill: var(--mist);
+}
+
+/* Conteúdo */
+.hero__inner {
+  position: relative;
+  z-index: 1;
+  min-height: 100svh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding-top: calc(var(--header-h) + clamp(18px, 4vh, 48px));
+  /* reserva o espaço do horizonte curvo da seção seguinte */
+  padding-bottom: calc(var(--horizon-h) + clamp(20px, 4vh, 44px));
+}
+.hero__coords {
+  color: var(--slate);
+  gap: 14px;
+}
+.hero__coords-sep {
+  width: 36px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.6;
+}
+
+.hero__name {
+  position: relative;
+  align-self: end;
+  width: max-content;
+  max-width: 100%;
+  margin-top: 6vh;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(4.4rem, 1rem + 15.2vw, 17.5rem);
+  line-height: 0.84;
+  letter-spacing: -0.025em;
+  color: var(--mist);
+}
+.hero__mask {
+  display: block;
+  overflow: hidden;
+  padding: 0.05em 0.18em 0.1em 0;
+  margin: -0.05em -0.18em -0.1em 0;
+}
+.hero__mask--second {
+  margin-left: 0.92em;
+}
+.hero__word {
+  display: inline-block;
+  white-space: nowrap;
+}
+.hero__word--second {
+  font-style: italic;
+}
+.hero__char {
+  display: inline-block;
+  will-change: transform;
+}
+.hero__name-star {
+  position: absolute;
+  right: -0.06em;
+  top: 0.92em;
+  color: var(--sky);
+}
+
+.hero__bottom {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  grid-template-areas:
+    'role .'
+    'intro actions';
+  align-items: end;
+  gap: 18px clamp(24px, 5vw, 96px);
+  margin-top: clamp(28px, 6vh, 72px);
+  max-width: 1180px;
+}
+.hero__role {
+  grid-area: role;
+  font-size: 0.78rem;
+  font-weight: 650;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--sky);
+}
+.hero__intro {
+  grid-area: intro;
+  max-width: 40ch;
+  font-size: var(--fs-lead);
+  line-height: 1.5;
+  color: var(--soft-on-dark);
+}
+.hero__actions {
+  grid-area: actions;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.hero__scroll {
+  position: absolute;
+  right: var(--gutter);
+  bottom: calc(var(--horizon-h) + clamp(20px, 4vh, 44px));
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  min-width: 44px;
+  font-size: 0.68rem;
+  font-weight: 650;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--slate);
+}
+.hero__scroll-track {
+  position: relative;
+  width: 1px;
+  height: 64px;
+  background: var(--line-dark-strong);
+  overflow: visible;
+}
+.hero__scroll-star {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  color: var(--sky);
+  translate: -50% -50%;
+  animation: scroll-star 2.6s var(--ease-in-out) infinite;
+}
+@keyframes scroll-star {
+  0% {
+    top: 0;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+.hero__scroll-label {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+.hero__scroll-arrow {
+  display: none;
+}
+
+/* Tablets e celulares */
+@media (max-width: 1023.98px) {
+  .hero__chart {
+    top: clamp(60px, 9vh, 110px);
+    right: -42vw;
+    width: 118vw;
+    translate: none;
+    opacity: 0.72;
+  }
+  .hero__bottom {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'role'
+      'intro'
+      'actions';
+  }
+  .hero__scroll {
+    display: none;
+  }
+}
+@media (max-width: 639.98px) {
+  .hero__name {
+    font-size: clamp(3.9rem, 24.5vw, 7rem);
+    margin-top: 0;
+  }
+  .hero__mask--second {
+    margin-left: 0.42em;
+  }
+  .hero__actions .btn {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,8 @@
+node_modules
+dist
+dist-ssr
+*.local
+.DS_Store
+.vite
+# PDFs originais NUNCA devem ir para o repositório (contêm dados pessoais)
+certificados-originais/

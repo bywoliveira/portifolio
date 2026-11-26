@@ -1,0 +1,11 @@
+@import 'lenis/dist/lenis.css';
+@import './tokens.css';
+@import './base.css';
+@import './header.css';
+@import './hero.css';
+@import './about-skills.css';
+@import './akron.css';
+@import './mockups.css';
+@import './certificates.css';
+@import './closing.css';
+@import './dialog.css';
